@@ -1,0 +1,16 @@
+{
+  "name": "todo_list",
+  "version": "1.0.0",
+  "description": "new To-do list wich stores and retrive data from the database using Node, Express and MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev" : "nodemon node.js"
+  },
+  "author": "Abhinav",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
