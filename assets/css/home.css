@@ -13,6 +13,7 @@ main{
     min-height: 80vh;
     display: flex;
     flex-direction: column;
+    flex-shrink: initial;
     align-items: center;
 }
 

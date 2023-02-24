@@ -1,42 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= title %>
-    </title>
-    <link rel="stylesheet" href="/css/home.css">
-</head>
-<body>
-    <main>
-        <h1 id="title"> TODO App </h1>
-        <form action="/create-task" method="post">
-            <div id="part1" class="part"> 
-                <label class="part1_item"  for="description">DESCRIPTION</label>
-                <input class="part1_item" name="description" id="description" type="text" placeholder="What do you want to do ?">
-            </div>
-            
-            <div id="part2" class="part">
-                <label for="category">CATEGORY</label>
-                <select name="category" id="category">
-                    <option value="Personal">Personal</option>
-                    <option value="Work">Work</option>
-                    <option value="School">School</option>
-                    <option value="Cleaning">Cleaning</option>
-                    <option value="Other">Other</option>
-                </select>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-                <label for="date">DUE DATE</label>
-                <input type="date" id="date" name="date">
-            </div> 
-            <div id="buttons">
-                <button type="submit">ADD TASK</button>
-                <button type="button">DELET TASKS</button>
-            </div>
-        </form>       
-    </main>
-    
-</body>
+        <title>
+            <%= locals.title %>
+        </title>
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body>
+        <main>
+            <h1 id="title"> TODO App </h1>
+            <form action="/create-task" method="post">
+                <div id="part1" class="part"> 
+                    <label class="part1_item"  for="description">DESCRIPTION</label>
+                    <input class="part1_item" name="description" id="description" type="text" placeholder="What do you want to do ?">
+                </div>
+                
+                <div id="part2" class="part">
+                    <label for="category">CATEGORY</label>
+                    <select name="category" id="category">
+                        <option value="Personal">Personal</option>
+                        <option value="Work">Work</option>
+                        <option value="School">School</option>
+                        <option value="Cleaning">Cleaning</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label for="date">DUE DATE</label>
+                    <input type="date" id="date" name="duedate">
+                </div> 
+                <div id="buttons">
+                    <button type="submit">ADD TASK</button>
+                    <button type="button" onclick="deleteMany()" >DELET TASKS</button>
+                </div>
+            </form>
+
+            <ul>
+                <% for(let i of todo_list){%>
+                    <li >
+                        <div class="">
+                            <input type="checkbox" name="selectedItems" value="<%= i.id%>">
+                            
+                            <p><%= i.id %></p>
+                            <p><%= i.category %></p>
+                            <p><%= i.duedate %></p>
+                        </div>
+                    </li>
+                <%}%>
+
+            </ul> 
+            
+        </main>
+
+        <script type="text/javascript" src="/js/home.js"></script>
+    </body>
 </html>

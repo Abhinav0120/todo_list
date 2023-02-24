@@ -1,12 +1,13 @@
 const express = require('express');
 const path = require('path');
+const port = 8000;
 
 const db = require('./config/mongoose');
 const Task = require('./models/task');
-const Contact = require('./models/task');
+
 
 const app = express();
-const port = 8000;
+
 
 // use express router
 app.use('/', require('./routes'));
@@ -14,9 +15,13 @@ app.use('/', require('./routes'));
 
 // set up the view engine
 app.set('view engine', 'ejs');
-app.set('views','./views');
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded());
 app.use(express.static('assets'));
+
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
 
 app.post('/create-task', function(req, res){
 
@@ -35,6 +40,18 @@ app.post('/create-task', function(req, res){
     });
 
 });
+
+
+app.post('/deleteMany' ,async (req,res) => {
+    console.log('request found');
+    const toDelete = req.body.toDelete;
+    console.log(toDelete);
+    await Task.deleteMany({_id: {$in: toDelete}});
+    console.log('Tasks deleted:', toDelete);
+    res.send('deleted') // or whatever
+    
+  })
+
 
 app.listen(port, function(err){
     if(err){
