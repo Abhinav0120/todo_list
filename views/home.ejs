@@ -34,24 +34,27 @@
                 </div> 
                 <div id="buttons">
                     <button type="submit">ADD TASK</button>
-                    <button type="button" onclick="deleteMany()" >DELET TASKS</button>
                 </div>
             </form>
 
-            <ul>
-                <% for(let i of todo_list){%>
-                    <li >
-                        <div class="">
-                            <input type="checkbox" name="selectedItems" value="<%= i.id%>">
-                            
-                            <p><%= i.id %></p>
-                            <p><%= i.category %></p>
-                            <p><%= i.duedate %></p>
-                        </div>
-                    </li>
-                <%}%>
+            <form action="/tasks/delete" method="post">
+                <button type="submit"> DELET TASK</button>
+                <ul>
+                    <% for(let i of todo_list){%>
+                        <li >
+                            <div class="">
+                                <input type="checkbox" name="selectedItems" value="<%= i.id%>">
+                                
+                                <p><%= i.description %></p>
+                                <p><%= i.category %></p>
+                                <p><%= i.duedate %></p>
+                            </div>
+                        </li>
+                    <%}%>
 
-            </ul> 
+                </ul> 
+            </form>
+            
             
         </main>
 

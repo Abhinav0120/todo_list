@@ -42,15 +42,19 @@ app.post('/create-task', function(req, res){
 });
 
 
-app.post('/deleteMany' ,async (req,res) => {
-    console.log('request found');
-    const toDelete = req.body.toDelete;
-    console.log(toDelete);
-    await Task.deleteMany({_id: {$in: toDelete}});
-    console.log('Tasks deleted:', toDelete);
-    res.send('deleted') // or whatever
-    
-  })
+app.post('/tasks/delete', (req, res) => {
+    const selectedItems = req.body.selectedItems;
+    Task.deleteMany({ _id: { $in: selectedItems } }, (err) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send('Error deleting items');
+      } else {
+        res.redirect('/');
+      }
+    });
+  });
+
+
 
 
 app.listen(port, function(err){
