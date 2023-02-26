@@ -4,10 +4,11 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <title>
             <%= locals.title %>
         </title>
+
+        <script src="https://kit.fontawesome.com/c2bcdcc44a.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="/css/home.css">
     </head>
     <body>
@@ -15,49 +16,70 @@
             <h1 id="title"> TODO App </h1>
             <form id="addForm" action="/create-task" method="post">
                 <div id="part1" class="part"> 
-                    <label class="part1_item"  for="description">DESCRIPTION</label>
-                    <input class="part1_item" name="description" id="description" type="text" placeholder="What do you want to do ?">
+                    <div id="wrapper_decription">   
+                        <label class="part1_item"  for="description">DESCRIPTION</label>
+                        <input class="part1_item" name="description" required id="description" type="text" placeholder="What do you want to do ?" >
+                    </div>
                 </div>
                 
                 <div id="part2" class="part">
-                    <label for="category">CATEGORY</label>
-                    <select name="category" id="category">
-                        <option value="Personal">Personal</option>
-                        <option value="Work">Work</option>
-                        <option value="School">School</option>
-                        <option value="Cleaning">Cleaning</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <label for="date">DUE DATE</label>
-                    <input type="date" id="date" name="duedate">
+                    <div id="elem_wrapper">
+                        <div id="wrapper_category">
+                            <label for="category">CATEGORY</label>
+                            <select name="category" id="category" required>
+                                <option value="Personal">Personal</option>
+                                <option value="Work">Work</option>
+                                <option value="School">School</option>
+                                <option value="Cleaning">Cleaning</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div id="wrapper_duedate">
+                            <label for="date">DUE DATE</label>
+                            <input type="date" id="date" name="duedate">
+                        </div>
+                        <button class="hideButton" type="submit">ADD TASK</button>
+                    </div>
                 </div> 
-                <button class="hideButton" type="submit">ADD TASK</button>
             </form>
 
             <div id="buttons">
-                <button id="submitBtn1" class="submitBtn" type="button">Add TASK</button>
-                <button id="submitBtn2" class="submitBtn" type="button">DELETE TASK</button>
+                <button id="submitBtn1" class="submitBtn" type="button"> 
+                    <i class="fa-solid fa-plus"></i> 
+                    ADD TASK
+                </button>
+                <button id="submitBtn2" class="submitBtn" type="button">
+                    <i class="fa-solid fa-trash-can"></i>
+                    DELETE TASK
+                </button>
             </div>
 
             <form id="deleteForm" action="/tasks/delete" method="post">
                 <button class="hideButton" type="submit"> DELET TASK</button>
                 <ul>
                     <% for(let i of todo_list){%>
-                        <li >
-                            <div class="">
+                        <li class="list">
+                            <div id="check">
                                 <input type="checkbox" name="selectedItems" value="<%= i.id%>">
-                                
-                                <p><%= i.description %></p>
-                                <p><%= i.category %></p>
-                                <p><%= new Date(i.duedate).toDateString() %></p>
                             </div>
+
+                            <div id="d_d">
+                                <div id="desc">
+                                    <p><%= i.description %></p>
+                                </div>
+                                <div id="date_info">
+                                    <p><%= new Date(i.duedate).toDateString() %></p>
+                                </div>
+                            </div>
+
+                            <div id="categ">
+                                <p><%= i.category %></p>
+                            </div>                                
                         </li>
                     <%}%>
-
                 </ul> 
             </form>
-            
-            
         </main>
 
         <script type="text/javascript" src="/js/home.js"></script>
