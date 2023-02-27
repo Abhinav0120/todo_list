@@ -4,6 +4,7 @@ const addForm = document.getElementById('addForm');
 const submitBtn1 = document.getElementById('submitBtn1');
 const submitBtn2 = document.getElementById('submitBtn2');
 
+// for accessing the submmit buttons of forms outside forms  
 buttons.addEventListener('click', function(e){
     let button = e.target; 
 

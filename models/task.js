@@ -14,8 +14,6 @@ const taskSchema = new mongoose.Schema({
         default: Date.now,
         require: true
     }
-
-
 });
 
 const Task = mongoose.model('Task',taskSchema); 
